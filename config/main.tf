@@ -275,7 +275,7 @@ resource "aws_config_config_rule" "iam_user_group_membership_check" {
     source_identifier = "IAM_USER_GROUP_MEMBERSHIP_CHECK"
   }
 
-  input_parameters = jsonencode(var.iam_user_groups)
+  /* input_parameters = jsonencode(var.iam_user_groups) */
 
   depends_on = ["aws_config_configuration_recorder.config"]
 }
