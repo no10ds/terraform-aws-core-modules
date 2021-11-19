@@ -47,9 +47,9 @@ variable "password_policy" {
 }
 
 variable "iam_user_groups" {
-  type        = list(string)
+  type        = map(string)
   description = "A list of mandatory groups for IAM users"
-  default     = []
+  default     = {}
 }
 
 variable "max_access_key_age" {
