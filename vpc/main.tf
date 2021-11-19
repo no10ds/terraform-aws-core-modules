@@ -57,7 +57,7 @@ resource "aws_eip" "core_nat_gw_eip" {
   count = length(data.aws_availability_zones.available.names)
   vpc   = true
 
-  depends_on = ["aws_internet_gateway.core_igw"]
+  depends_on = [aws_internet_gateway.core_igw]
 
   tags = merge({
     Name = "${var.vpc_name}_nat_gw_eip_${replace(

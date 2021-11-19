@@ -76,8 +76,4 @@ locals {
   private_subnet_prefix = length(var.private_subnet_prefix) > 0 ? var.private_subnet_prefix : "${var.vpc_name}_private_subnet"
 }
 
-provider "aws" {
-  version = "~> 2.20.0"
-}
-
 data "aws_availability_zones" "available" {}

@@ -96,9 +96,4 @@ locals {
   }, var.password_policy)
 }
 
-provider "aws" {
-  version = ">= 2.20.0"
-}
-
 data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}

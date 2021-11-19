@@ -86,7 +86,3 @@ locals {
   admin_groups = compact(concat([var.admin_group_name], var.additional_admin_groups))
   user_groups  = compact(concat([var.user_group_name], var.additional_user_groups))
 }
-
-provider "aws" {
-  version = "~> 2.20.0"
-}

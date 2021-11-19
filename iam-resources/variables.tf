@@ -47,7 +47,3 @@ locals {
   power_user_access_policy_arn    = "arn:aws:iam::aws:policy/PowerUserAccess"
   users_account_id                = length(var.users_account_id) > 0 ? var.users_account_id : data.aws_caller_identity.current.account_id
 }
-
-provider "aws" {
-  version = "~> 2.20.0"
-}
