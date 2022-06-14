@@ -18,8 +18,8 @@ module "app_cluster" {
   data_s3_bucket_name                             = aws_s3_bucket.this.id
   log_bucket_name                                 = data.terraform_remote_state.platform.outputs.log_bucket
   vpc_id                                          = data.terraform_remote_state.platform.outputs.vpc_id
-  public_subnet_ids_list                          = data.terraform_remote_state.platform.outputs.public_subnets
-  private_subnet_ids_list                         = data.terraform_remote_state.platform.outputs.private_subnets
+  public_subnet_ids_list                          = var.public_subnet_ids_list
+  private_subnet_ids_list                         = var.private_subnet_ids_list
 #  parameter_store_variable_arns                   = [module.auth.protected_scopes_parameter_store_arn]
   athena_query_output_bucket_arn                  = module.data_workflow.athena_query_result_output_bucket_arn
   ip_whitelist = [
@@ -69,7 +69,7 @@ module "data_workflow" {
   data_s3_bucket_arn   = aws_s3_bucket.this.arn
   data_s3_bucket_name  = aws_s3_bucket.this.id
   vpc_id               = data.terraform_remote_state.platform.outputs.vpc_id
-  private_subnet       = data.terraform_remote_state.platform.outputs.private_subnets[0]
+  private_subnet       = var.private_subnet_ids_list[0]
   aws_region           = local.region
 }
 
