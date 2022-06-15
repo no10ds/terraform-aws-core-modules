@@ -1,6 +1,6 @@
 module "app_cluster" {
   # source = "git@github.com:no10ds/rapid-infrastructure.git//modules/app-cluster?ref=1c44ef9aaad8e037279c0972772174c5c246c59a"
-  source                                          = "./app-cluster"
+  source                                          = "../rapid-modules/app-cluster"
   app-replica-count-desired                       = var.app-replica-count-max
   app-replica-count-max                           = var.app-replica-count-desired
   resource-name-prefix                            = var.resource-name-prefix
@@ -8,12 +8,12 @@ module "app_cluster" {
   support_emails_for_cloudwatch_alerts            = var.support_emails_for_cloudwatch_alerts
   cognito_user_login_app_credentials_secrets_name = module.auth.cognito_user_app_secret_manager_name
   cognito_user_pool_id                            = module.auth.cognito_user_pool_id
-  domain_name                                     = local.domain_name
+  domain_name                                     = var.domain_name
   rapid_ecr_url                                   = var.rapid_ecr_url
   certificate_validation_arn                      = var.certificate_validation_arn
   hosted_zone_id                                  = var.hosted_zone_id
-  aws_account                                     = local.account_id
-  aws_region                                      = local.region
+  aws_account                                     = var.aws_account
+  aws_region                                      = var.aws_region
   data_s3_bucket_arn                              = aws_s3_bucket.this.arn
   data_s3_bucket_name                             = aws_s3_bucket.this.id
   log_bucket_name                                 = var.log_bucket_name
@@ -28,23 +28,23 @@ module "app_cluster" {
 
 module "auth" {
   # source               = "git@github.com:no10ds/rapid-infrastructure.git//modules/auth?ref=1c44ef9aaad8e037279c0972772174c5c246c59a"
-  source               = "./auth"
+  source               = "../rapid-modules/auth"
   tags                 = var.tags
-  domain_name          = local.domain_name
+  domain_name          = var.domain_name
   resource-name-prefix = var.resource-name-prefix
 }
 
 
 module "data_workflow" {
   # source = "git@github.com:no10ds/rapid-infrastructure.git//modules/data-workflow?ref=1c44ef9aaad8e037279c0972772174c5c246c59a"
-  source               = "./data-workflow"
+  source               = "../rapid-modules/data-workflow"
   resource-name-prefix = var.resource-name-prefix
-  aws_account          = local.account_id
+  aws_account          = var.aws_account
   data_s3_bucket_arn   = aws_s3_bucket.this.arn
   data_s3_bucket_name  = aws_s3_bucket.this.id
   vpc_id               = var.vpc_id
   private_subnet       = var.private_subnet_ids_list[0]
-  aws_region           = local.region
+  aws_region           = var.aws_region
 }
 
 

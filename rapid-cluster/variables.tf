@@ -15,10 +15,26 @@ variable "application_version" {
   description = "The version number for the application image (e.g.: v1.0.4, v1.0.x-latest, etc.)"
 }
 
+variable "aws_account" {
+  type        = string
+  description = "AWS Account number to host the rAPId service"
+}
+
+variable "aws_region" {
+  type        = string
+  description = "The region of the AWS Account for the rAPId service"
+}
+
 variable "certificate_validation_arn" {
   type        = string
   description = "Arn of the certificate used by the domain"
 }
+
+variable "domain_name" {
+  type        = string
+  description = "Domain name for the rAPId instance"
+}
+
 
 variable "hosted_zone_id" {
   type        = string

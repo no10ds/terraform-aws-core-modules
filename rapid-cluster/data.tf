@@ -8,10 +8,10 @@
 #  }
 #}
 
-data "aws_caller_identity" "current" {}
-
-locals {
-  region      = "eu-west-2"
-  account_id  = data.aws_caller_identity.current.account_id
-  domain_name = "rapid.ten.dataops.cabinetoffice.gov.uk"
-}
+#data "aws_caller_identity" "current" {}
+#
+#locals {
+#  region      = "eu-west-2"
+#  account_id  = data.aws_caller_identity.current.account_id
+#  domain_name = "rapid.ten.dataops.cabinetoffice.gov.uk"
+#}
