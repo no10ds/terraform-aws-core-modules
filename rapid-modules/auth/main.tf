@@ -72,18 +72,18 @@ resource "aws_cognito_user_pool_domain" "rapid_cognito_domain" {
   user_pool_id = aws_cognito_user_pool.rapid_user_pool.id
 }
 
-resource "aws_secretsmanager_secret" "cognito_client_secrets" {
+resource "aws_secretsmanager_secret" "client_secrets_cognito" {
   # checkov:skip=CKV_AWS_149:AWS Managed Key is sufficient
-  name = "${var.resource-name-prefix}_cognito_client_secrets"
+  name = "${var.resource-name-prefix}_client_secrets_cognito"
 }
 
-resource "aws_secretsmanager_secret" "cognito_user_secrets" {
+resource "aws_secretsmanager_secret" "user_secrets_cognito" {
   # checkov:skip=CKV_AWS_149:AWS Managed Key is sufficient
-  name = "${var.resource-name-prefix}_cognito_user_secrets"
+  name = "${var.resource-name-prefix}_user_secrets_cognito"
 }
 
 resource "aws_secretsmanager_secret_version" "client_secrets_version" {
-  secret_id     = aws_secretsmanager_secret.cognito_client_secrets.id
+  secret_id     = aws_secretsmanager_secret.client_secrets_cognito.id
   secret_string = jsonencode({
     client_name = aws_cognito_user_pool_client.test_client.name
     client_id = aws_cognito_user_pool_client.test_client.id
@@ -92,7 +92,7 @@ resource "aws_secretsmanager_secret_version" "client_secrets_version" {
 }
 
 resource "aws_secretsmanager_secret_version" "user_login_client_secrets_version" {
-  secret_id     = aws_secretsmanager_secret.cognito_user_secrets.id
+  secret_id     = aws_secretsmanager_secret.user_secrets_cognito.id
   secret_string = jsonencode({
     client_id = aws_cognito_user_pool_client.user_login.id
     client_secret = aws_cognito_user_pool_client.user_login.client_secret

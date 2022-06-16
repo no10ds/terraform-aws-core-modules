@@ -1,8 +1,8 @@
 module "app_cluster" {
   # source = "git@github.com:no10ds/rapid-infrastructure.git//modules/app-cluster?ref=1c44ef9aaad8e037279c0972772174c5c246c59a"
   source                                          = "../rapid-modules/app-cluster"
-  app-replica-count-desired                       = var.app-replica-count-max
-  app-replica-count-max                           = var.app-replica-count-desired
+  app-replica-count-desired                       = var.app-replica-count-desired
+  app-replica-count-max                           = var.app-replica-count-max
   resource-name-prefix                            = var.resource-name-prefix
   application_version                             = var.application_version
   support_emails_for_cloudwatch_alerts            = var.support_emails_for_cloudwatch_alerts

@@ -24,6 +24,19 @@ resource "aws_s3_bucket" "rapid_athena_query_results_bucket" {
     }
   }
 }
+#TODO: add aws_s3_bucket_lifecycle_configuration and aws_s3_bucket_server_side_encryption_configuration instead
+#resource "aws_s3_bucket_lifecycle_configuration" "rapid_athena_query_results_bucket_life_cycle" {
+#  bucket = aws_s3_bucket.rapid_athena_query_results_bucket.id
+#
+#  rule {
+#    id = "expiry_config"
+#    status = Enabled
+#    expiration {
+#      days = 30
+#    }
+#  }
+#
+#}
 
 resource "aws_s3_bucket_public_access_block" "rapid_athena_query_results_bucket" {
   bucket                  = aws_s3_bucket.rapid_athena_query_results_bucket.id
