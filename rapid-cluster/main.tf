@@ -20,23 +20,20 @@ module "app_cluster" {
   vpc_id                                          = var.vpc_id
   public_subnet_ids_list                          = var.public_subnet_ids_list
   private_subnet_ids_list                         = var.private_subnet_ids_list
-#  parameter_store_variable_arns                   = [module.auth.protected_scopes_parameter_store_arn]
-  athena_query_output_bucket_arn                  = module.data_workflow.athena_query_result_output_bucket_arn
-  ip_whitelist = var.ip_whitelist
+  #  parameter_store_variable_arns                   = [module.auth.protected_scopes_parameter_store_arn]
+  athena_query_output_bucket_arn = module.data_workflow.athena_query_result_output_bucket_arn
+  ip_whitelist                   = var.ip_whitelist
 }
 
 
 module "auth" {
-  # source               = "git@github.com:no10ds/rapid-infrastructure.git//modules/auth?ref=1c44ef9aaad8e037279c0972772174c5c246c59a"
   source               = "../rapid-modules/auth"
   tags                 = var.tags
   domain_name          = var.domain_name
   resource-name-prefix = var.resource-name-prefix
 }
 
-
 module "data_workflow" {
-  # source = "git@github.com:no10ds/rapid-infrastructure.git//modules/data-workflow?ref=1c44ef9aaad8e037279c0972772174c5c246c59a"
   source               = "../rapid-modules/data-workflow"
   resource-name-prefix = var.resource-name-prefix
   aws_account          = var.aws_account
@@ -47,15 +44,13 @@ module "data_workflow" {
   aws_region           = var.aws_region
 }
 
-
 resource "aws_s3_bucket" "this" {
   # checkov:skip=CKV_AWS_144:No need for cross region replication
-#  bucket = "ten-ds-rapid"
   bucket = var.resource-name-prefix
 }
 
 resource "aws_s3_bucket_public_access_block" "this" {
-  bucket = aws_s3_bucket.this.id
+  bucket                  = aws_s3_bucket.this.id
   ignore_public_acls      = true
   block_public_acls       = true
   block_public_policy     = true

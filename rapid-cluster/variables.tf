@@ -47,17 +47,17 @@ variable "ip_whitelist" {
 }
 
 variable "log_bucket_name" {
-  type = string
+  type        = string
   description = "The name of the log bucket"
 }
 
 variable "public_subnet_ids_list" {
-  type = list(string)
+  type        = list(string)
   description = "A list of public subnets from the VPC config"
 }
 
 variable "private_subnet_ids_list" {
-  type = list(string)
+  type        = list(string)
   description = "A list of private subnets from each organisation network config"
 }
 
@@ -68,7 +68,7 @@ variable "rapid_ecr_url" {
 }
 
 variable "resource-name-prefix" {
-  type = string
+  type        = string
   description = "organization prefix of for naming"
 }
 
@@ -86,7 +86,7 @@ variable "tags" {
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The ID of the multihost VPC"
 }
 

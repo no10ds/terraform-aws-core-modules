@@ -17,14 +17,14 @@ resource "aws_s3_bucket" "rapid_athena_query_results_bucket" {
   }
 
   lifecycle_rule {
-    id = "expiry_config"
+    id      = "expiry_config"
     enabled = true
     expiration {
       days = 30
     }
   }
 }
-#TODO: add aws_s3_bucket_lifecycle_configuration and aws_s3_bucket_server_side_encryption_configuration instead
+#TODO: add aws_s3_bucket_lifecycle_configuration and aws_s3_bucket_server_side_encryption_configuration instead - current config DEPRECIATED
 #resource "aws_s3_bucket_lifecycle_configuration" "rapid_athena_query_results_bucket_life_cycle" {
 #  bucket = aws_s3_bucket.rapid_athena_query_results_bucket.id
 #

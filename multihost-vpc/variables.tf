@@ -48,7 +48,7 @@ variable "enable_dns_hostnames" {
 #
 locals {
   # We are using locals for this because there already is a fair amount of function calling inside the actual resources
-  public_subnet_prefix  = length(var.public_subnet_prefix) > 0 ? var.public_subnet_prefix : "${var.vpc_name}_public_subnet"
+  public_subnet_prefix = length(var.public_subnet_prefix) > 0 ? var.public_subnet_prefix : "${var.vpc_name}_public_subnet"
 }
 #
 data "aws_availability_zones" "available" {}

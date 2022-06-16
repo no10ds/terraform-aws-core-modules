@@ -318,7 +318,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
   network_configuration {
     subnets          = [var.private_subnet_ids_list[0]] # TODO: Run in multiple subnets?
     assign_public_ip = false
-    security_groups  = [
+    security_groups = [
       aws_security_group.service_security_group.id,
       aws_security_group.load_balancer_security_group.id
     ]
