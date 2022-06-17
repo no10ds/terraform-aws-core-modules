@@ -13,16 +13,15 @@ variable "vpc_name" {
 variable "vpc_cidr_range" {
   type        = string
   description = "The IP address space to use for the VPC"
-#  default     = "10.0.0.0/16"
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The VPC ID of the core VPC"
 }
 
 variable "core_private_route_table_ids" {
-  type = list(string)
+  type        = list(string)
   description = "The private route table IDs of the core to route private subnets to the Nat gateways "
 }
 
