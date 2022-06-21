@@ -198,7 +198,7 @@ resource "aws_iam_policy" "app_tags_access" {
 }
 
 resource "aws_iam_policy" "app_parameter_store_access" {
-  name        = "app_parameter_store_access"
+  name        = "${var.resource-name-prefix}-app_parameter_store_access"
   description = "Allow application instance to update values in parameter store"
   tags        = var.tags
 
