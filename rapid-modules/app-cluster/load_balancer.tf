@@ -19,7 +19,6 @@ resource "aws_alb" "application_load_balancer" {
 data "aws_elb_service_account" "main" {}
 
 resource "aws_s3_bucket_policy" "allow_alb_logging" {
-  #  name = "${var.log_bucket_name}_allow_alb_logging"
   bucket = var.log_bucket_name
   policy = <<POLICY
 {

@@ -20,7 +20,7 @@ module "app_cluster" {
   vpc_id                                          = var.vpc_id
   public_subnet_ids_list                          = var.public_subnet_ids_list
   private_subnet_ids_list                         = var.private_subnet_ids_list
-  #  parameter_store_variable_arns                   = [module.auth.protected_scopes_parameter_store_arn]
+  parameter_store_variable_arns                   = [module.auth.protected_scopes_parameter_store_arn]
   athena_query_output_bucket_arn = module.data_workflow.athena_query_result_output_bucket_arn
   ip_whitelist                   = var.ip_whitelist
 }
@@ -51,6 +51,19 @@ resource "aws_s3_bucket" "this" {
 
 resource "aws_s3_bucket_public_access_block" "this" {
   bucket                  = aws_s3_bucket.this.id
+  ignore_public_acls      = true
+  block_public_acls       = true
+  block_public_policy     = true
+  restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket" "logs" {
+  # checkov:skip=CKV_AWS_144:No need for cross region replication
+  bucket = var.log_bucket_name
+}
+
+resource "aws_s3_bucket_public_access_block" "logs" {
+  bucket                  = aws_s3_bucket.logs.id
   ignore_public_acls      = true
   block_public_acls       = true
   block_public_policy     = true
