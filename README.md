@@ -1,4 +1,4 @@
-# DEPRECATED - these are now in the rapid-infrastructure/modules/aws_core
+# DEPRECATED - these are now in rapid-infrastructure/modules/aws_core
 
 # AWS Core Modules
 
