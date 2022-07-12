@@ -1,3 +1,5 @@
+# DEPRECATED - these are now in the rapid-infrastructure/modules/aws_core
+
 # AWS Core Modules
 
 This is a collection of Terraform "core" modules I would consider to be building blocks of every reasonable AWS account setup.
